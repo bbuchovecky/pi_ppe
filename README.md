@@ -4,6 +4,8 @@ Exploratory analysis of the CESM2 preindustrial slab-ocean coupled perturbed
 parameter ensemble (PI PPE): 36 one-at-a-time CLM5 parameter perturbations
 (`COUP0001`–`COUP0037` except `COUP0002`, min/max of 18 parameters) plus the default run `COUP0000`.
 
+For a detailed description of the PPE design, see [Zarakas et al. (2024)](https://doi.org/10.1029/2024GL108372).
+
 ## Layout
 
 | Path | Contents |
@@ -19,7 +21,7 @@ parameter ensemble (PI PPE): 36 one-at-a-time CLM5 parameter perturbations
 
 - Simulations (read-only): `/glade/campaign/cgd/tss/people/czarakas/CoupledPPE/coupled_simulations/`
 - Member → parameter crosswalk: `data/CLM5PPE_coupledPPE_crosswalk.csv` (copied from `/glade/u/home/czarakas/coupled_PPE/code/02_set_up_ensemble/`)
-- Outputs: `/glade/work/bbuchovecky/pi_ppe/{proc,fig}`
+- Outputs: `/glade/work/bbuchovecky/pi_ppe/{proc,fig}` (saving figures to `fig/` for now)
 
 ## Setup
 
@@ -45,9 +47,6 @@ Add a dependency with `pixi add <pkg>` and commit the updated `pixi.lock`.
 
 ```python
 import pippe.load as load
-import pippe.analysis as an
 
 ts = load.open_ensemble("TS", gcomp="atm", time_slice=slice("0049", "0188"))
-gts = an.global_mean(an.annual_mean(ts))
-anom = an.anomaly(gts)          # each member minus COUP0000
 ```
