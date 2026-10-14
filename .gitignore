@@ -218,3 +218,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project: data and figures live in /glade/work/bbuchovecky/pi_ppe (pippe.config), not the repo
+*.nc
+*.zarr/

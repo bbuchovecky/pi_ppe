@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pippe"
+version = "0.1.0"
+description = "Exploratory analysis of the CESM2 preindustrial slab-ocean coupled PPE"
+requires-python = ">=3.12"
+# Resolved by pixi for the editable install; every entry is met by a conda
+# package in [tool.pixi.dependencies], so nothing comes from PyPI.
+dependencies = [
+    "numpy",
+    "pandas",
+    "xarray",
+    "dask",
+    "netcdf4",
+    "cftime",
+]
+
+[tool.setuptools.packages.find]
+include = ["pippe*"]
+
+# ---------------------------------------------------------------------------
+# pixi: the pippe env (loose specs here, exact versions in pixi.lock)
+#   pixi install          create/update the env
+#   pixi run kernel       register the `pippe` Jupyter kernel
+# ---------------------------------------------------------------------------
+[tool.pixi.workspace]
+name = "pippe"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[tool.pixi.dependencies]
+python = "3.12.*"
+
+# --- Numerics / stats ---
+numpy = "*"
+pandas = "*"
+scipy = "*"
+statsmodels = "*"
+
+# --- N-dimensional arrays / I/O ---
+xarray = "*"
+netcdf4 = "*"
+cftime = "*"
+flox = "*"          # fast groupby reductions
+bottleneck = "*"    # fast nan-reductions and rolling
+
+# --- Parallel ---
+dask = "*"
+distributed = "*"
+dask-jobqueue = "*" # PBS clusters on Casper/Derecho
+
+# --- Plotting / geospatial ---
+matplotlib = "*"
+cartopy = "*"
+cmocean = "*"
+nc-time-axis = "*"  # matplotlib axes for cftime
+regionmask = "*"
+
+# --- Notebooks ---
+ipykernel = "*"
+
+[tool.pixi.pypi-dependencies]
+pippe = { path = ".", editable = true }
+
+[tool.pixi.tasks]
+kernel = "python -m ipykernel install --user --name pippe --display-name pippe"
