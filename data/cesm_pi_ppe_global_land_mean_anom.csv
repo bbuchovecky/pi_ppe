@@ -1,4 +1,4 @@
-,param,minmax,et [mm/day],pr [mm/day],qover [mm/day],qrunoff [mm/day],qover_ratio [mm/day],qrunoff_ratio [mm/day]
+,param,minmax,et [mm/day],pr [mm/day],qover [mm/day],qrunoff [mm/day],qover_ratio [1],qrunoff_ratio [1]
 0,default,default,0.0,0.0,0.0,0.0,0.0,0.0
 1,rhosnir,min,0.3257492273186955,0.022137177053828783,0.0023277361595566703,0.011032434372721833,-0.0005856536001430379,0.0011587163738860373
 2,rhosnir,max,-0.44209107468710584,-0.030636509030358194,-0.005210963159797466,-0.015335067978563988,-7.43670007058439e-06,-0.0016672374608240337
